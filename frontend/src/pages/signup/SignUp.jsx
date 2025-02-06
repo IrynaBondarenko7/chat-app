@@ -1,3 +1,5 @@
+import GenderCheckbox from "./GenderCheckbox";
+
 const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -47,6 +49,8 @@ const SignUp = () => {
               className="w-full input input-bordered h-10"
             />
           </div>
+          <GenderCheckbox />
+
           <a
             href="#"
             className="text-sm hover:underline hover:text-green-950 mt-2 inline-block"
