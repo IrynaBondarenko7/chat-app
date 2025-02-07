@@ -9,3 +9,9 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+
+@theme {
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-xl: 1440px;
+}
