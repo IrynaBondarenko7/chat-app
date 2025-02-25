@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import MessageInput from "./MessageInput";
-import Messages from "./Messages";
-import NoChatSelected from "./NoChatSelected";
-import useConversation from "../../../zustand-store/useConversation.js";
+import MessageInput from "./MessageInput.jsx";
+import Messages from "./Messages.jsx";
+import NoChatSelected from "./NoChatSelected.jsx";
+import useConversation from "../../zustand-store/useConversation.js";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
