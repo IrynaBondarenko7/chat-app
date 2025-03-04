@@ -16,7 +16,7 @@ const Login = () => {
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400/0 bg-clip-padding backdrop-blur-lg">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-green-700 ml-2">ChatApp</span>
+          <span className="text-green-600 ml-2">ChatApp</span>
         </h1>
         <form onSubmit={handleSubmit}>
           <div>
@@ -26,7 +26,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter Username"
-              className="w-full input input-bordered h-10 focus:outline-green-700 border-0"
+              className="w-full input input-bordered h-10 focus:outline-green-700 border-0 transition-all duration-300"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -40,7 +40,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full input input-bordered h-10 focus:outline-green-700 border-0"
+              className="w-full input input-bordered h-10 focus:outline-green-700 border-0 transition-all duration-300"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -49,7 +49,7 @@ const Login = () => {
           </div>
           <Link
             to="/signup"
-            className="text-sm hover:underline hover:text-green-950 focus:underline focus:text-green-950 mt-2 inline-block text-white transition-all duration-300"
+            className="text-sm hover:underline hover:text-green-600 focus:underline focus:text-green-600 mt-2 inline-block text-white transition-all duration-300"
           >
             {"Don't"} have an account?
           </Link>

@@ -2,7 +2,7 @@ import useGetConversations from "../../hooks/useGetConversations";
 import { getRandomEmoji } from "../../utils/emojies";
 import Conversation from "./Conversation";
 
-const Conversations = () => {
+const Conversations = ({ closeBurger }) => {
   const { loading, conversations } = useGetConversations();
   return (
     <div className="py-2 flex flex-col overflow-auto">
@@ -13,6 +13,7 @@ const Conversations = () => {
             conversation={conversation}
             emoji={getRandomEmoji()}
             lastIdx={idx === conversations.length - 1}
+            closeBurger={closeBurger}
           />
         );
       })}

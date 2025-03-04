@@ -1,11 +1,13 @@
+import { useMediaQuery } from "react-responsive";
 import { useSocketContext } from "../../context/SocketContext.jsx";
 import useConversation from "../../zustand-store/useConversation.js";
 
-const Conversation = ({ conversation, emoji, lastIdx }) => {
+const Conversation = ({ conversation, emoji, lastIdx, closeBurger }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const isSelected = selectedConversation?._id === conversation._id;
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
     <>
@@ -13,7 +15,12 @@ const Conversation = ({ conversation, emoji, lastIdx }) => {
         className={`flex gap-2 items-center hover:bg-green-800 rounded p-2 py-1 cursor-pointer
 				${isSelected ? "bg-green-800" : ""}
 			`}
-        onClick={() => setSelectedConversation(conversation)}
+        onClick={() => {
+          if (isMobile) {
+            closeBurger();
+          }
+          setSelectedConversation(conversation);
+        }}
       >
         <div className={`avatar ${isOnline ? "avatar-online" : ""}`}>
           <div className="w-12 rounded-full">
