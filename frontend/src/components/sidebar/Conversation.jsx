@@ -9,6 +9,9 @@ const Conversation = ({ conversation, emoji, lastIdx, closeBurger }) => {
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id);
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const shouldShowBadge =
+    selectedConversation?._id !== conversation._id &&
+    newMessagesCount[conversation._id] > 0;
 
   return (
     <>
@@ -33,8 +36,7 @@ const Conversation = ({ conversation, emoji, lastIdx, closeBurger }) => {
           <div className="flex gap-3 justify-between">
             <p className="font-bold text-gray-200">{conversation.fullName}</p>
 
-            {selectedConversation?._id !== conversation._id &&
-            newMessagesCount[conversation._id] > 0 ? (
+            {shouldShowBadge ? (
               <div className="badge badge-sm badge-success">
                 {newMessagesCount[conversation._id]}
               </div>
