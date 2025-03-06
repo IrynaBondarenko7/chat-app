@@ -3,7 +3,8 @@ import { useSocketContext } from "../../context/SocketContext.jsx";
 import useConversation from "../../zustand-store/useConversation.js";
 
 const Conversation = ({ conversation, emoji, lastIdx, closeBurger }) => {
-  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { selectedConversation, setSelectedConversation, newMessagesCount } =
+    useConversation();
   const isSelected = selectedConversation?._id === conversation._id;
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id);
@@ -31,7 +32,15 @@ const Conversation = ({ conversation, emoji, lastIdx, closeBurger }) => {
         <div className="flex flex-col flex-1">
           <div className="flex gap-3 justify-between">
             <p className="font-bold text-gray-200">{conversation.fullName}</p>
-            <span className="text-xl">{emoji}</span>
+
+            {selectedConversation?._id !== conversation._id &&
+            newMessagesCount[conversation._id] > 0 ? (
+              <div className="badge badge-sm badge-success">
+                {newMessagesCount[conversation._id]}
+              </div>
+            ) : (
+              <span className="text-xl">{emoji}</span>
+            )}
           </div>
         </div>
       </div>

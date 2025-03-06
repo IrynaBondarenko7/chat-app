@@ -6,6 +6,16 @@ const useConversation = create((set) => ({
     set({ selectedConversation }),
   messages: [],
   setMessages: (messages) => set({ messages }),
+  newMessagesCount: {},
+  setNewMessagesCount: (conversationId, reset = false) =>
+    set((state) => ({
+      newMessagesCount: {
+        ...state.newMessagesCount,
+        [conversationId]: reset
+          ? 0
+          : (state.newMessagesCount[conversationId] || 0) + 1,
+      },
+    })),
 }));
 
 export default useConversation;

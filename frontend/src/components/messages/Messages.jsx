@@ -1,20 +1,20 @@
 import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
+import useConversation from "../../zustand-store/useConversation.js";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import Message from "./Message";
-import useListenMessages from "../../hooks/useListenMessages";
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
   const lastMessageRef = useRef(null);
-
-  useListenMessages();
+  const { selectedConversation, setNewMessagesCount } = useConversation();
 
   useEffect(() => {
     setTimeout(() => {
       lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+      setNewMessagesCount(selectedConversation._id, true);
     }, 100);
-  }, [messages]);
+  }, [messages, selectedConversation._id, setNewMessagesCount]);
 
   return (
     <div className="px-4 flex-1 overflow-auto">
