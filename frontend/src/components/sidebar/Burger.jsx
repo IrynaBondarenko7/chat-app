@@ -1,12 +1,26 @@
 import { BsMenuUp } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { Button, Dialog, DialogPanel } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchInput from "./SearchInput";
 import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
+import useConversation from "../../zustand-store/useConversation";
+
 const Burger = () => {
   let [isOpen, setIsOpen] = useState(false);
+  const { newMessagesCount } = useConversation();
+
+  const [totalAmountOfNewMessages, setTotalAmountOfNewMessages] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    for (let key in newMessagesCount) {
+      if (key) total += newMessagesCount[key];
+    }
+
+    setTotalAmountOfNewMessages(total);
+  }, [newMessagesCount]);
 
   function open() {
     setIsOpen(true);
@@ -17,7 +31,15 @@ const Burger = () => {
   }
   return (
     <div className="text-white p-2 border-r border-slate-500">
-      <BsMenuUp className="text-3xl md:text-6xl text-center" onClick={open} />
+      <button onClick={open} className="relative">
+        <BsMenuUp className="text-3xl md:text-6xl text-center" />
+        {totalAmountOfNewMessages > 0 && (
+          <div className="badge badge-sm badge-success absolute top-0 left-5">
+            {totalAmountOfNewMessages}
+          </div>
+        )}
+      </button>
+
       <Dialog
         open={isOpen}
         as="div"

@@ -34,7 +34,7 @@ const useListenMessages = () => {
 
       setNewMessagesCount(newMessage.senderId);
     });
-    console.log("sockets");
+
     return () => socket?.off("newMessage");
   }, [
     socket,
