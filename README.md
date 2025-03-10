@@ -33,7 +33,7 @@ Chat App is a modern real-time messaging application built using the MERN stack,
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/your-repo/chat-app.git
+git clone https://github.com/IrynaBondarenko7/chat-app.git
 cd chat-app
 ```
 
