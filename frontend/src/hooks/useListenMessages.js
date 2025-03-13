@@ -27,7 +27,7 @@ const useListenMessages = () => {
         const updateMessagesForCurrentUsers =
           selectedConversation._id === newMessage.senderId;
 
-        if (updateMessagesForCurrentUsers.length > 0) {
+        if (updateMessagesForCurrentUsers) {
           setMessages([...messages, newMessage]);
         }
       }
